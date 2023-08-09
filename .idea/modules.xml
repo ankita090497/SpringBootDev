@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/02-spring-boot-jpa/bootjpaexample/bootjpaexample.iml" filepath="$PROJECT_DIR$/02-spring-boot-jpa/bootjpaexample/bootjpaexample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/01-spring-boot-jpa/demo/demo.iml" filepath="$PROJECT_DIR$/01-spring-boot-jpa/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dev-spring-boot.iml" filepath="$PROJECT_DIR$/.idea/dev-spring-boot.iml" />
+    </modules>
+  </component>
+</project>
