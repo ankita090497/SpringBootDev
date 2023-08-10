@@ -64,7 +64,17 @@ public class BootjpaexampleApplication {
         // Get data using custom finder method
 
         List<UserEntity> userEntities = userRepository.findByName("Ankita");
-        userEntities.forEach(e->System.out.println(e));
+        userEntities.forEach(e -> System.out.println(e));
+
+        // Get data using JPQL query method
+        List<UserEntity> allUser = userRepository.getAllUser();
+        allUser.forEach(allUsers -> System.out.println(allUsers));
+
+        // Get data using Native query method
+
+        List<UserEntity> userDataByName = userRepository.getUserByName("Ankita");
+        userDataByName.forEach(usrData -> System.out.println(usrData));
+
     }
 
 }
