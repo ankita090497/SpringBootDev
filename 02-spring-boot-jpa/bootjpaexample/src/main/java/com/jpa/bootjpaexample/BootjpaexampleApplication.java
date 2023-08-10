@@ -59,6 +59,12 @@ public class BootjpaexampleApplication {
         // Delete user element
         userRepository.deleteById(512);
         System.out.println("Deleted");
+
+
+        // Get data using custom finder method
+
+        List<UserEntity> userEntities = userRepository.findByName("Ankita");
+        userEntities.forEach(e->System.out.println(e));
     }
 
 }
