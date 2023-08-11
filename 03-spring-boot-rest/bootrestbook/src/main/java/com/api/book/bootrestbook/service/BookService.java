@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -15,6 +16,7 @@ public class BookService {
         list.add(new BookEntity(11, "SQL", "abc"));
         list.add(new BookEntity(12, "Oracle", "pqr"));
         list.add(new BookEntity(13, "Spring Boot", "mno"));
+        list.add(new BookEntity(14, "Spring", "xyz"));
     }
 
     // Get All books
@@ -30,8 +32,13 @@ public class BookService {
     }
 
     //Adding the book
-    public BookEntity addBook(BookEntity bookEntity){
+    public BookEntity addBook(BookEntity bookEntity) {
         list.add(bookEntity);
         return bookEntity;
+    }
+
+    //delete book by Id
+    public void deleteBook(int bookId) {
+        list = list.stream().filter(book -> book.getBookId() != bookId).collect(Collectors.toList());
     }
 }

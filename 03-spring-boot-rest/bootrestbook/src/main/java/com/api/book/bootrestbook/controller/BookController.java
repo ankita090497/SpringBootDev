@@ -27,10 +27,14 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public BookEntity addBook(@RequestBody BookEntity bookEntity){
-
+    public BookEntity addBook(@RequestBody BookEntity bookEntity) {
         BookEntity book = bookService.addBook(bookEntity);
         return book;
+    }
+
+    @DeleteMapping("/book/{bookId}")
+    public void deleteBook(@PathVariable("bookId") int bookId) {
+        bookService.deleteBook(bookId);
     }
 
 }
