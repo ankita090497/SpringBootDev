@@ -28,4 +28,10 @@ public class BookService {
         book = list.stream().filter(e -> e.getBookId() == id).findFirst().get();
         return book;
     }
+
+    //Adding the book
+    public BookEntity addBook(BookEntity bookEntity){
+        list.add(bookEntity);
+        return bookEntity;
+    }
 }
