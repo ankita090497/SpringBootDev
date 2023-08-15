@@ -3,10 +3,14 @@ package com.api.book.bootrestbook.controller;
 import com.api.book.bootrestbook.entity.BookEntity;
 import com.api.book.bootrestbook.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BookController {
@@ -15,15 +19,22 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/books")
-    public List<BookEntity> getBooks() {
+    public ResponseEntity<List<BookEntity>> getBooks() {
         List<BookEntity> bookEntityList = new ArrayList<>();
         bookEntityList = bookService.getAllBooks();
-        return bookEntityList;
+        if (bookEntityList.size() <= 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(bookEntityList));
     }
 
     @GetMapping("/book/{id}")
-    public BookEntity getBooks(@PathVariable("id") int id) {
-        return bookService.getBookById(id);
+    public ResponseEntity<BookEntity> getBooks(@PathVariable("id") int id) {
+        BookEntity bookEntity = bookService.getBookById(id);
+        if (bookEntity == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(bookEntity));
     }
 
     @PostMapping("/books")
