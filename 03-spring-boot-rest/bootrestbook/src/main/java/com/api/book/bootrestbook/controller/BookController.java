@@ -4,7 +4,6 @@ import com.api.book.bootrestbook.entity.BookEntity;
 import com.api.book.bootrestbook.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,19 +37,37 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public BookEntity addBook(@RequestBody BookEntity bookEntity) {
-        BookEntity book = bookService.addBook(bookEntity);
-        return book;
+    public ResponseEntity<BookEntity> addBook(@RequestBody BookEntity bookEntity) {
+        BookEntity book = null;
+        try {
+            book = bookService.addBook(bookEntity);
+            return ResponseEntity.of(Optional.of(book));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping("/book/{bookId}")
-    public void deleteBook(@PathVariable("bookId") int bookId) {
-        bookService.deleteBook(bookId);
+    public ResponseEntity<Void> deleteBook(@PathVariable("bookId") int bookId) {
+
+        try {
+            bookService.deleteBook(bookId);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping("/book/{bookId}")
-    public BookEntity updateBook(@RequestBody BookEntity bookEntity, @PathVariable("bookId") int bookId) {
-        bookService.updateBook(bookEntity, bookId);
-        return bookEntity;
+    public ResponseEntity<BookEntity> updateBook(@RequestBody BookEntity bookEntity, @PathVariable("bookId") int bookId) {
+        try {
+            bookService.updateBook(bookEntity, bookId);
+            return ResponseEntity.ok().body(bookEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }
