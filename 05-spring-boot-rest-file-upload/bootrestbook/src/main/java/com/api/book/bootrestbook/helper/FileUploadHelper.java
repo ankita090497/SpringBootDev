@@ -1,9 +1,11 @@
 package com.api.book.bootrestbook.helper;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -11,7 +13,14 @@ import java.nio.file.StandardCopyOption;
 @Component
 public class FileUploadHelper {
 
-    public final String UPLOAD_PATH = "E:\\dev-spring-boot\\05-spring-boot-rest-file-upload\\bootrestbook\\src\\main\\resources\\static\\image";
+    // static path
+    // public final String UPLOAD_PATH = "E:\\dev-spring-boot\\05-spring-boot-rest-file-upload\\bootrestbook\\src\\main\\resources\\static\\image";
+
+    // get dynamic path
+    public final String UPLOAD_PATH = new ClassPathResource("static/image/").getFile().getAbsolutePath();
+
+    public FileUploadHelper() throws IOException {
+    }
 
     public boolean isUploadFile(MultipartFile profile) {
 
@@ -29,7 +38,6 @@ public class FileUploadHelper {
 
             outputStream.flush();
             outputStream.close();*/
-
 
             Files.copy(profile.getInputStream(), Paths.get(UPLOAD_PATH + File.separator + profile.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
             fileUploadStatus = true;
