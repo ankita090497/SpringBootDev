@@ -14,13 +14,13 @@ public class BookEntity {
     @Column(name = "book_title")
     private String bookTitle;
 
-    @Column(name = "book_author")
-    private String bookAuthor;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Author bookAuthor;
 
     public BookEntity() {
     }
 
-    public BookEntity(int id, String bookTitle, String bookAuthor) {
+    public BookEntity(int id, String bookTitle, Author bookAuthor) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
@@ -42,11 +42,11 @@ public class BookEntity {
         this.bookTitle = bookTitle;
     }
 
-    public String getBookAuthor() {
+    public Author getBookAuthor() {
         return bookAuthor;
     }
 
-    public void setBookAuthor(String bookAuthor) {
+    public void setBookAuthor(Author bookAuthor) {
         this.bookAuthor = bookAuthor;
     }
 
