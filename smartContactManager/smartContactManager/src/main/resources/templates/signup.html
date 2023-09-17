@@ -6,8 +6,53 @@
 </head>
 <body>
 <section>
-    <h1>This is Signup page</h1>
-    <h2>Here, we are going to write about Smart Contact Manager</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="my-card">
+                    <h1 class="text-center">Sign Up Here</h1>
+                    <form action="" th:action="@{do_register}" method="post">
+
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter here" required>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <label for="name">Email</label>
+                            <input type="email" class="form-control" id="email_id" placeholder="Enter here" required>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter here" required>
+                        </div>
+
+                        <!-- user about field -->
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <textarea name="" id=""  rows="10" placeholder="Enter something yourself" class="form-control" required></textarea>
+                        </div>
+
+                        <div class="container text-center">
+                            <button type="submit" class="btn bg-primary text-white">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-warning text-white">
+                                Reset
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </section>
 </body>
 </html>
